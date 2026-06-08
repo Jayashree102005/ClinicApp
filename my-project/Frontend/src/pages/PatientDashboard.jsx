@@ -37,12 +37,12 @@ const PatientDashboard = () => {
     try {
       const token = localStorage.getItem('token') || localStorage.getItem('clinic_token');
       
-      const apptResponse = await axios.get('${API_URL}/api/appointments/mine', {
+      const apptResponse = await axios.get(`${API_URL}/api/appointments/mine`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setAppointments(apptResponse.data.reverse()); 
       
-      const docsResponse = await axios.get('${API_URL}/api/doctors');
+      const docsResponse = await axios.get(`${API_URL}/api/doctors`);
       const liveDoctors = docsResponse.data;
       setAvailableDoctors(liveDoctors);
 
@@ -67,7 +67,7 @@ const PatientDashboard = () => {
     setBookingLoading(true);
     try {
       const token = localStorage.getItem('token') || localStorage.getItem('clinic_token');
-      await axios.post('${API_URL}/api/appointments/book', bookingData, {
+      await axios.post(`${API_URL}/api/appointments/book`, bookingData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("✅ Appointment successfully booked!");

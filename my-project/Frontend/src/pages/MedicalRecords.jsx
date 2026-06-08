@@ -17,7 +17,7 @@ const MedicalRecords = () => {
     try {
       const token = localStorage.getItem('token') || localStorage.getItem('clinic_token');
       
-      const response = await axios.get('${API_URL}/api/appointments/mine', {
+      const response = await axios.get(`${API_URL}/api/appointments/mine`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       

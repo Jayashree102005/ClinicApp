@@ -35,13 +35,13 @@ const AdminDashboard = () => {
         const token = localStorage.getItem('token');
 
         // Fetch Appointments
-        const apptRes = await axios.get('${API_URL}/api/appointments/admin/all', {
+        const apptRes = await axios.get(`${API_URL}/api/appointments/admin/all`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setAppointments(apptRes.data);
 
         // Fetch Permanent Doctors
-        const docRes = await axios.get('${API_URL}/api/doctors');
+        const docRes = await axios.get(`${API_URL}/api/doctors`);
         setDoctorsList(docRes.data);
 
         setLoading(false);
@@ -86,7 +86,7 @@ const AdminDashboard = () => {
         status: 'Available'
       };
 
-      const res = await axios.post('${API_URL}/api/doctors/add', doctorData, {
+      const res = await axios.post(`${API_URL}/api/doctors/add`, doctorData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

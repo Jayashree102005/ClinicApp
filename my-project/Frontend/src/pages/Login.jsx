@@ -20,7 +20,7 @@ const Login = () => {
 
     try {
       // 2. Make the real API call to your backend
-      const response = await axios.post('${API_URL}/api/auth/login', {
+      const response = await axios.post(`${API_URL}/api/auth/login`, {
         email,
         password
       });

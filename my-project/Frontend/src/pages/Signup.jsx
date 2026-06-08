@@ -39,7 +39,7 @@ const Signup = () => {
 
     try {
       // 2. Make the real API call to your backend
-      const response = await axios.post('${API_URL}/api/auth/signup', {
+      const response = await axios.post(`${API_URL}/api/auth/signup`, {
         name: formData.name,
         email: formData.email,
         password: formData.password,
