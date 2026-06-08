@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'; // <-- 1. Import Axios
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -38,7 +39,7 @@ const Signup = () => {
 
     try {
       // 2. Make the real API call to your backend
-      const response = await axios.post('http://localhost:5000/api/auth/signup', {
+      const response = await axios.post('${API_URL}/api/auth/signup', {
         name: formData.name,
         email: formData.email,
         password: formData.password,

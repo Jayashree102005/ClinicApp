@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const PatientDashboard = () => {
   const { user, logout } = useContext(AuthContext);
@@ -36,12 +37,12 @@ const PatientDashboard = () => {
     try {
       const token = localStorage.getItem('token') || localStorage.getItem('clinic_token');
       
-      const apptResponse = await axios.get('http://localhost:5000/api/appointments/mine', {
+      const apptResponse = await axios.get('${API_URL}/api/appointments/mine', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setAppointments(apptResponse.data.reverse()); 
       
-      const docsResponse = await axios.get('http://localhost:5000/api/doctors');
+      const docsResponse = await axios.get('${API_URL}/api/doctors');
       const liveDoctors = docsResponse.data;
       setAvailableDoctors(liveDoctors);
 
@@ -66,7 +67,7 @@ const PatientDashboard = () => {
     setBookingLoading(true);
     try {
       const token = localStorage.getItem('token') || localStorage.getItem('clinic_token');
-      await axios.post('http://localhost:5000/api/appointments/book', bookingData, {
+      await axios.post('${API_URL}/api/appointments/book', bookingData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("✅ Appointment successfully booked!");
@@ -85,7 +86,7 @@ const PatientDashboard = () => {
       const token = localStorage.getItem('token') || localStorage.getItem('clinic_token');
       
       // 1. Send the decision to the backend
-      await axios.patch(`http://localhost:5000/api/appointments/${apt._id}/reply`, 
+      await axios.patch(`${API_URL}/api/appointments/${apt._id}/reply`, 
         { reply: decision }, 
         { headers: { Authorization: `Bearer ${token}` } }
       );

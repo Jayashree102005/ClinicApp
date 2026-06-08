@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
-
+const API_URL = import.meta.env.VITE_API_URL;
 const AdminDashboard = () => {
   const { user, logout } = useContext(AuthContext);
 
@@ -35,13 +35,13 @@ const AdminDashboard = () => {
         const token = localStorage.getItem('token');
 
         // Fetch Appointments
-        const apptRes = await axios.get('http://localhost:5000/api/appointments/admin/all', {
+        const apptRes = await axios.get('${API_URL}/api/appointments/admin/all', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setAppointments(apptRes.data);
 
         // Fetch Permanent Doctors
-        const docRes = await axios.get('http://localhost:5000/api/doctors');
+        const docRes = await axios.get('${API_URL}/api/doctors');
         setDoctorsList(docRes.data);
 
         setLoading(false);
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
   const handleStatusChange = async (id, newStatus, reason = '') => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.patch(`http://localhost:5000/api/appointments/admin/status/${id}`,
+      const res = await axios.patch(`${API_URL}/api/appointments/admin/status/${id}`,
         { status: newStatus, cancellationReason: reason },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -86,7 +86,7 @@ const AdminDashboard = () => {
         status: 'Available'
       };
 
-      const res = await axios.post('http://localhost:5000/api/doctors/add', doctorData, {
+      const res = await axios.post('${API_URL}/api/doctors/add', doctorData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -107,7 +107,7 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem('token');
 
-      await axios.delete(`http://localhost:5000/api/doctors/${id}`, {
+      await axios.delete(`${API_URL}/api/doctors/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

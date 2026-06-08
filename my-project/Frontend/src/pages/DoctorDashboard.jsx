@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const DoctorDashboard = () => {
   const { user, logout } = useContext(AuthContext);
@@ -33,13 +34,13 @@ const DoctorDashboard = () => {
       const token = localStorage.getItem('token') || localStorage.getItem('clinic_token');
 
       // 1. Fetch Patients
-      const apptResponse = await axios.get('http://localhost:5000/api/appointments/doctor/patients', {
+      const apptResponse = await axios.get('${API_URL}/api/appointments/doctor/patients', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPatients(apptResponse.data);
 
       // 2. Fetch My Own Doctor Profile to check Emergency Status
-      const docsResponse = await axios.get('http://localhost:5000/api/doctors');
+      const docsResponse = await axios.get('${API_URL}/api/doctors');
       const myProfile = docsResponse.data.find(doc => doc.email === user.email);
 
       if (myProfile && myProfile.status === 'Unavailable') {
@@ -61,7 +62,7 @@ const DoctorDashboard = () => {
 
     try {
       const token = localStorage.getItem('token') || localStorage.getItem('clinic_token');
-      await axios.put(`http://localhost:5000/api/appointments/${selectedAppointment._id}/prescribe`, {
+      await axios.put(`${API_URL}/api/appointments/${selectedAppointment._id}/prescribe`, {
         prescription: prescriptionText,
         status: 'Completed'
       }, {
@@ -91,7 +92,7 @@ const DoctorDashboard = () => {
 
     try {
       const token = localStorage.getItem('token') || localStorage.getItem('clinic_token');
-      await axios.patch('http://localhost:5000/api/doctors/update-schedule',
+      await axios.patch('${API_URL}/api/doctors/update-schedule',
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );

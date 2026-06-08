@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext'; // Adjust path if needed
+const API_URL = import.meta.env.VITE_API_URL;
 
 const MedicalRecords = () => {
   const { user } = useContext(AuthContext);
@@ -16,7 +17,7 @@ const MedicalRecords = () => {
     try {
       const token = localStorage.getItem('token') || localStorage.getItem('clinic_token');
       
-      const response = await axios.get('http://localhost:5000/api/appointments/mine', {
+      const response = await axios.get('${API_URL}/api/appointments/mine', {
         headers: { Authorization: `Bearer ${token}` }
       });
       

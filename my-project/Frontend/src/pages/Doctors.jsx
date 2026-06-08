@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../component/Footer';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]); // This will hold your DB doctors
@@ -13,7 +14,7 @@ const Doctors = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/doctors');
+        const res = await axios.get('${API_URL}/api/doctors');
         setDoctors(res.data);
       } catch (err) {
         console.error("Failed to fetch doctors:", err);
