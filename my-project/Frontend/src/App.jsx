@@ -15,7 +15,7 @@ import DoctorDashboard from './pages/DoctorDashboard';
 import Services from './pages/Services'; 
 import AdminDashboard from './pages/AdminDashboard';
 import AdminRoute from './component/AdminRoute'; 
-import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTop from "./component/ScrollToTop";
 
 function App() {
   const location = useLocation();
