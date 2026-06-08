@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom'; 
-
+import ScrollToTop from "./component/ScrollToTop";
 import Navbar from './component/Navbar';
 import Home from './pages/Home';
 import Doctors from './pages/Doctors'; 
@@ -20,42 +20,48 @@ import AdminRoute from './component/AdminRoute';
 function App() {
   const location = useLocation();
 
-  // 1. UPDATED: Added '/doctor-dashboard' so the public navbar hides on this screen!
-  const hideNavbarRoutes = ['/patient-dashboard', '/medical-records', '/profile', '/admin', '/doctor-dashboard']; 
+  const hideNavbarRoutes = [
+    '/patient-dashboard',
+    '/medical-records',
+    '/profile',
+    '/admin',
+    '/doctor-dashboard'
+  ];
+
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
-      
-      {/* Renders navbar only on public landing screens */}
+
+      <ScrollToTop />
+
       {!shouldHideNavbar && <Navbar />}
-      
+
       <main className="flex-grow">
         <Routes>
-          {/* Public Views */}
           <Route path="/" element={<Home />} />
           <Route path="/doctors" element={<Doctors />} />
-          <Route path="/about" element={<About/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path='/signup' element={<Signup/>}/>
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/service" element={<Services />} />
-          <Route path="/contact" element={<Contact/>}/>    
-          {/* Private Patient Dashboard Views */}
+          <Route path="/contact" element={<Contact />} />
+
           <Route path="/patient-dashboard" element={<PatientDashboard />} />
           <Route path="/medical-records" element={<MedicalRecords />} />
           <Route path="/profile" element={<Profile />} />
-
-          {/* 2. ADDED: The new Route for the Doctor Dashboard */}
           <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
-          {/* 🔒 PROTECTED ADMIN CONTROL VIEW (Only Accessible to Authenticated Admins) */}
+
           <Route element={<AdminRoute />}>
             <Route path="/admin" element={<AdminDashboard />} />
           </Route>
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </div>
   );
 }
+
 
 export default App;
