@@ -44,33 +44,47 @@ const Home = () => {
       <div className="bg-slate-50 text-gray-900 overflow-x-hidden font-sans relative">
         
         {/* 1. Hero Banner */}
-        <section 
-          className="relative h-[85vh] flex items-center justify-center bg-cover bg-center" 
-          style={{ backgroundImage: `url(${homebg})` }}
-        >
-         <div className="absolute inset-0 bg-blue-900/15" />
-<div className="absolute inset-0 bg-gradient-to-r from-slate-900/50 via-slate-900/30 to-slate-900/10" />
-          
-          <div className="relative z-10 text-center px-4 text-white mt-10 w-full max-w-5xl mx-auto">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-blue-500/20 backdrop-blur-md border border-blue-300/30 text-sm font-bold tracking-widest mb-6 uppercase shadow-lg text-blue-100">
-              Your Health, Our Priority
-            </span>
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight drop-shadow-xl">
-              Advanced Healthcare,<br />Tailored to You
-            </h1>
-            <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto font-medium leading-relaxed drop-shadow-lg text-gray-200">
-              Experience world-class medical expertise supported by cutting-edge technology and compassionate care. Your health journey begins here.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-5 justify-center">
-              <Link to="/doctors" className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full text-lg font-bold transition-all shadow-xl hover:shadow-blue-500/40 transform hover:-translate-y-1">
-                Schedule a Consultation
-              </Link>
-              <Link to="/service" className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full text-lg font-bold transition-all shadow-xl transform hover:-translate-y-1">
-                Explore Services
-              </Link>
-            </div>
-          </div>
-        </section>
+<section
+  className="relative min-h-[80vh] md:h-[85vh] flex items-center justify-center bg-cover bg-center"
+  style={{ backgroundImage: `url(${homebg})` }}
+>
+  <div className="absolute inset-0 bg-blue-900/15" />
+  <div className="absolute inset-0 bg-gradient-to-r from-slate-900/50 via-slate-900/30 to-slate-900/10" />
+
+  <div className="relative z-10 text-center px-4 sm:px-6 text-white w-full max-w-5xl mx-auto">
+    
+    <span className="inline-block py-1 px-3 sm:py-1.5 sm:px-4 rounded-full bg-blue-500/20 backdrop-blur-md border border-blue-300/30 text-xs sm:text-sm font-bold tracking-widest mb-4 sm:mb-6 uppercase shadow-lg text-blue-100">
+      Your Health, Our Priority
+    </span>
+
+    <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 sm:mb-6 tracking-tight drop-shadow-xl leading-tight">
+      Advanced Healthcare,
+      <br />
+      Tailored to You
+    </h1>
+
+    <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-10 max-w-3xl mx-auto font-medium leading-relaxed drop-shadow-lg text-gray-200">
+      Experience world-class medical expertise supported by cutting-edge technology and compassionate care. Your health journey begins here.
+    </p>
+
+    <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center">
+      <Link
+        to="/doctors"
+        className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold transition-all shadow-xl hover:shadow-blue-500/40 transform hover:-translate-y-1"
+      >
+        Schedule a Consultation
+      </Link>
+
+      <Link
+        to="/service"
+        className="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold transition-all shadow-xl transform hover:-translate-y-1"
+      >
+        Explore Services
+      </Link>
+    </div>
+
+  </div>
+</section>
 
         {/* 2. Stats Bar */}
         <section className="relative -mt-16 z-20 max-w-6xl mx-auto px-4 mb-20">
