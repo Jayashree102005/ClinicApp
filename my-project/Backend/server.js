@@ -6,11 +6,15 @@ require('dotenv').config();
 // 1. IMPORT ALL ROUTES AT THE TOP
 const authRoutes = require('./routes/auth'); 
 const appointmentRoutes = require('./routes/appointments'); 
+const doctorRoute = require('./routes/doctors'); 
 
 const app = express();
 
-// Middleware
-app.use(cors()); 
+// Middleware - UPDATED to allow both localhost ports (5173 and 5174)
+app.use(cors({
+    origin: ['http://localhost:5173', 'http://localhost:5174'], 
+    credentials: true
+})); 
 app.use(express.json()); 
 
 // Connect to MongoDB
@@ -21,6 +25,7 @@ mongoose.connect(process.env.MONGO_URI)
 // 2. USE ALL ROUTES HERE
 app.use('/api/auth', authRoutes);
 app.use('/api/appointments', appointmentRoutes); 
+app.use('/api/doctors', doctorRoute); 
 
 // Default testing route
 app.get('/', (req, res) => {
@@ -32,8 +37,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`🚀 Server is running on port ${PORT}`);
 });
-// Add this near your other route imports at the top
-const doctorRoute = require('./routes/doctors');
-
-// Add this where your app.use() statements are
-app.use('/api/doctors', doctorRoute);

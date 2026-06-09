@@ -5,21 +5,33 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   email: {
     type: String,
     required: true,
-    unique: true, // Prevents two accounts with the same email
+    unique: true,
   },
+
   password: {
     type: String,
     required: true,
   },
+
   role: {
     type: String,
-    // 🔒 UPDATED: Added 'admin' to the allowed list of options
-    enum: ['patient', 'doctor', 'admin'], 
+    enum: ['patient', 'doctor', 'admin'],
     default: 'patient',
+  },
+
+  // Forgot Password Fields
+  resetPasswordToken: {
+    type: String,
+  },
+
+  resetPasswordExpire: {
+    type: Date,
   }
+
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
