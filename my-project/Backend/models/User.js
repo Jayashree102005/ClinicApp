@@ -23,15 +23,6 @@ const userSchema = new mongoose.Schema({
     default: 'patient',
   },
 
-  // Forgot Password Fields
-  resetPasswordToken: {
-    type: String,
-  },
-
-  resetPasswordExpire: {
-    type: Date,
-  }
-
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

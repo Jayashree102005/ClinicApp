@@ -16,8 +16,6 @@ import Services from './pages/Services';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminRoute from './component/AdminRoute'; 
 import ScrollToTop from "./component/ScrollToTop";
-import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
 
 function App() {
   const location = useLocation();
@@ -45,8 +43,6 @@ function App() {
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/service" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
