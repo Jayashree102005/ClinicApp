@@ -1,4 +1,8 @@
 const nodemailer = require("nodemailer");
+const dns = require("dns");
+
+// Force Node.js to prefer IPv4 over IPv6
+dns.setDefaultResultOrder("ipv4first");
 
 const sendEmail = async (options) => {
   try {
@@ -6,6 +10,7 @@ const sendEmail = async (options) => {
       host: "smtp.gmail.com",
       port: 587,
       secure: false, // Use STARTTLS
+      family: 4,     // Force IPv4
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -28,6 +33,7 @@ const sendEmail = async (options) => {
 
     console.log("✅ Email sent:", info.response);
 
+    return info;
   } catch (error) {
     console.error("❌ Email sending failed:", error);
     throw error;
