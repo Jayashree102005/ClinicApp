@@ -12,11 +12,7 @@ const app = express();
 
 // Middleware - UPDATED to allow both localhost ports (5173 and 5174)
 app.use(cors({
-    origin: [
-        'http://localhost:5173',
-        'http://localhost:5174',
-        'https://clinic-app-is5i.vercel.app'
-    ],
+    origin: true,
     credentials: true
 }));
 app.use(express.json()); 
