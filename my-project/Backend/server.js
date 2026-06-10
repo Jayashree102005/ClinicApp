@@ -15,7 +15,7 @@ app.use(cors({
     origin: [
         'http://localhost:5173',
         'http://localhost:5174',
-        'https://clinic-app-tan.vercel.app'
+        'https://clinic-app-is5i.vercel.app'
     ],
     credentials: true
 }));
